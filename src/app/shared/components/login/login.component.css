@@ -1,0 +1,12 @@
+.loginCard {
+  width: 65%;
+  margin: 10% auto;
+  background-image: url("../../../../assets/images/bg-01.jpg");
+  min-height: 400px;
+  position: relative;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28)
+}
+
+.splits p {
+  font-size: 18px
+}

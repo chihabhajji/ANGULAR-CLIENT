@@ -1,0 +1,61 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+.avatar-picture{
+  width: 2.6%;
+}
+
+footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Style the list */
+ul.bc {
+  padding: 10px 16px;
+  list-style: none;
+  background-color: gray;
+}
+
+/* Display list items side by side */
+ul.bc li {
+  display: inline;
+  font-size: 18px;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.bc li+li:before {
+  padding: 8px;
+  content: ">";
+}
+
+/* Add a color to all links inside the list */
+ul.bc li a {
+  color: #0275d8;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.bc li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}
