@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/74aaadaa-8298-4785-84f4-4eb6f6029593/deploy-status)](https://app.netlify.com/sites/fgsc-odoo-clone/deploys)
+
 # FGSCANGULARCLIENT
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.8.
