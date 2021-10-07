@@ -28,9 +28,6 @@
         "src/environments/*"
       ]
     },
-    "types": [
-      "node"
-    ]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
