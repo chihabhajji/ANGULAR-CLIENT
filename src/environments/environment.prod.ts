@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  gateway: $FGSC_GATEWAY
+  gateway: process.env.FGSC_GATEWAY
 };
