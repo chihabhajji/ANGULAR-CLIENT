@@ -25,6 +25,7 @@ export class AuthGuard implements CanActivate {
       }
       return true;
     }
+    // TODO : Check if return url works
     this.snackBar.open('Please log in');
     this.router.navigate(['/login'], {queryParams: {returnUrl: state.url}}).then();
     return false;

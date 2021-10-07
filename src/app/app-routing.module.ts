@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {ErrorComponent} from "@app/shared/components/error/error.component";
-
 // , canLoad: : [AuthGuard]
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },

@@ -12,6 +12,8 @@ import {ErrorInterceptor} from "@app/shared/_helpers/error.interceptor";
 import {HttpRequestInterceptor} from "@app/shared/_helpers/http-request.interceptor";
 import {AppRoutingModule} from "@app/app-routing.module";
 import {NgxSpinnerModule} from "ngx-spinner";
+import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +25,8 @@ import {NgxSpinnerModule} from "ngx-spinner";
     BrowserModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
+    MatButtonModule,
+    MatIconModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
