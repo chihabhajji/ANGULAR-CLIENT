@@ -26,6 +26,15 @@
       ],
       "@environments/*": [
         "src/environments/*"
+      ],
+      "@dashboard/*": [
+        "src/app/modules/dashboard/*"
+      ],
+      "@home/*": [
+        "src/app/modules/home/*"
+      ],
+      "@user_management/*": [
+        "src/app/modules/dashboard/user-management/*"
       ]
     },
   },
