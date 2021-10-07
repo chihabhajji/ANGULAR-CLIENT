@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/74aaadaa-8298-4785-84f4-4eb6f6029593/deploy-status)](https://app.netlify.com/sites/fgsc-odoo-clone/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/74aaadaa-8298-4785-84f4-4eb6f6029593/deploy-status)](https://app.netlify.com/sites/fgsc-odoo-clone/deploys) 
 
 # FGSCANGULARCLIENT
 
