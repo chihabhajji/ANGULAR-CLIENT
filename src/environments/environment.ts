@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  gateway: 'http://localhost:8080/api',
-  authGateway: 'http://localhost:8080/token'
+  gateway: 'http://localhost:8080/api'
 };
 
 /*

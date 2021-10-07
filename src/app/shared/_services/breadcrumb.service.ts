@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, Data, NavigationEnd, Router} from "@angular/router";
 import {BehaviorSubject} from "rxjs";
-import {Breadcrumb} from "@app/shared/models/_ui/Breadcrumb";
+import {Breadcrumb} from "@app/shared/_models/_ui/Breadcrumb";
 import {filter} from "rxjs/operators";
 
 @Injectable({

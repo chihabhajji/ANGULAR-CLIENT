@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import { Observable } from 'rxjs';
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {AuthService} from "@app/services/auth.service";
-import {Role} from "@app/shared/models/User";
+import {AuthService} from "@app/shared/_services/auth.service";
+import {Role} from "@app/shared/_models/User";
 
 @Injectable({
   providedIn: 'root'

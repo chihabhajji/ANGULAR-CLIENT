@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { UsersListDataSource } from './users-list-datasource';
-import {User} from "@app/shared/models/User";
+import {User} from "@app/shared/_models/User";
 
 @Component({
   selector: 'app-users-list',

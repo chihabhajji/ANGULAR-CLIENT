@@ -6,7 +6,7 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
-import {AuthService} from "@app/services/auth.service";
+import {AuthService} from "@app/shared/_services/auth.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {catchError} from "rxjs/operators";
 

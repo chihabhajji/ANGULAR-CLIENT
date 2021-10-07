@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import {AuthService} from "@app/services/auth.service";
+import {AuthService} from "@app/shared/_services/auth.service";
 import {FlatTreeControl} from "@angular/cdk/tree";
-import {TreeNode} from "@app/shared/models/_ui/TreeNode";
+import {TreeNode} from "@app/shared/_models/_ui/TreeNode";
 import {MatTreeFlatDataSource, MatTreeFlattener} from "@angular/material/tree";
 import {BreadcrumbService} from "@app/shared/_services/breadcrumb.service";
-import {Breadcrumb} from "@app/shared/models/_ui/Breadcrumb";
+import {Breadcrumb} from "@app/shared/_models/_ui/Breadcrumb";
 
 @Component({
   selector: 'app-navigation',

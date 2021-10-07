@@ -3,7 +3,7 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import { environment } from '@environments/environment';
-import {Role, User} from "@app/shared/models/User";
+import {Role, User} from "@app/shared/_models/User";
 @Injectable({
   providedIn: 'root'
 })
@@ -32,7 +32,7 @@ export class AuthService {
     urlSearchParams.set('username', username);
     urlSearchParams.set('password', password);
     const body = urlSearchParams.toString();
-    return this.http.post<any>(`${environment.authGateway}`, body, {headers}).subscribe(jwtPromise => {
+    return this.http.post<any>(`${environment.gateway}/auth`, body, {headers}).subscribe(jwtPromise => {
       if (jwtPromise.access_token) {
         this.http.get<User>( `${environment.gateway}account/info`, {
           headers: {

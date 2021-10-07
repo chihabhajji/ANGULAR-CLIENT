@@ -21,7 +21,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { ErrorComponent } from '@app/shared/components/error/error.component';
-import {AuthService} from "@app/services/auth.service";
+import {AuthService} from "@app/shared/_services/auth.service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {JwtInterceptor} from "@app/shared/_helpers/jwt.interceptor";
 import {ErrorInterceptor} from "@app/shared/_helpers/error.interceptor";
