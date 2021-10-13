@@ -8,6 +8,7 @@ import {
 import { Observable } from 'rxjs';
 import {NgxSpinnerService} from "ngx-spinner";
 import {finalize} from "rxjs/operators";
+import {ErrorInterceptor} from "@shared/_helpers/error.interceptor";
 
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
@@ -16,14 +17,14 @@ export class HttpRequestInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if (this.count === 0 && !request.url.includes('paginated')) {
-      this.spinnerService.show();
+      this.spinnerService.show().then(() => null);
     }
     this.count++;
     return next.handle(request).pipe(
       finalize(() => {
         this.count--;
         if (this.count === 0) {
-          this.spinnerService.hide();
+          this.spinnerService.hide().then(() => null);
         }
       }));
   }

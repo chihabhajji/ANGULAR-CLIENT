@@ -3,7 +3,7 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import { environment } from '@environments/environment';
-import {Role, User} from "@app/shared/_models/User";
+import {Role, User} from "@models/User";
 @Injectable({
   providedIn: 'root'
 })
@@ -32,9 +32,9 @@ export class AuthService {
     urlSearchParams.set('username', username);
     urlSearchParams.set('password', password);
     const body = urlSearchParams.toString();
-    return this.http.post<any>(`${environment.gateway}/auth`, body, {headers}).subscribe(jwtPromise => {
+    return this.http.post<any>(`${environment.apiGateway}/auth/login`, body, {headers}).subscribe(jwtPromise => {
       if (jwtPromise.access_token) {
-        this.http.get<User>( `${environment.gateway}account/info`, {
+        this.http.get<User>( `${environment.apiGateway}auth/me`, {
           headers: {
             Authorization: `Bearer ${jwtPromise.access_token}`
           }
@@ -56,7 +56,7 @@ export class AuthService {
     localStorage.removeItem('token');
     // @ts-ignore
     this.currentUserSubject.next(null);
-    this.http.post(`${environment.gateway}Logout`, null).subscribe();
+    this.http.post(`${environment.apiGateway}auth/logout`, null).subscribe();
     await this.router.navigate(['login']);
   }
 }

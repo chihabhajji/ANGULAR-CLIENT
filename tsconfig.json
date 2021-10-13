@@ -28,13 +28,25 @@
         "src/environments/*"
       ],
       "@dashboard/*": [
-        "src/app/modules/dashboard/*"
+        "src/app/dashboard/*"
       ],
       "@home/*": [
-        "src/app/modules/home/*"
+        "src/app/home/*"
       ],
-      "@user_management/*": [
-        "src/app/modules/dashboard/user-management/*"
+      "@services/*": [
+        "src/app/shared/_services/*"
+      ],
+      "@models/*": [
+        "src/app/shared/_models/*"
+      ],
+      "@shared/*": [
+        "src/app/shared/*"
+      ],
+      "@assets/*": [
+        "src/assets/*"
+      ],
+      "@user_management_module/*": [
+        "src/app/dashboard/super_admin/user-management/*"
       ]
     },
   },

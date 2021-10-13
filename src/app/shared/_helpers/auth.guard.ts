@@ -3,7 +3,7 @@ import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTre
 import { Observable } from 'rxjs';
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AuthService} from "@app/shared/_services/auth.service";
-import {Role} from "@app/shared/_models/User";
+import {Role} from "@models/User";
 
 @Injectable({
   providedIn: 'root'

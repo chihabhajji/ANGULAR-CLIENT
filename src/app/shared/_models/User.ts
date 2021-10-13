@@ -1,4 +1,4 @@
-export interface User{
+export interface User {
   id: string;
   username: string;
   email: string;
@@ -21,9 +21,10 @@ export function ROLES(): Role[] {
 export function containsRole(role: Role, roles: Role[]): boolean{
   return  roles.indexOf(role) !== -1;
 }
-export function DisplayRole(role: Role): string{
+export function displayRole(role: Role): string{
   switch (role){
-    case (Role.SUPER_ADMIN) : return 'Super administrateur';
+    case (Role.SUPER_ADMIN) : return 'Super admin';
     default: return 'undefined role';
   }
 }
+

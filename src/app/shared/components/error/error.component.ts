@@ -5,7 +5,7 @@ import {NavigationEnd, Router} from "@angular/router";
 @Component({
   selector: 'app-error',
   templateUrl: './error.component.html',
-  styleUrls: ['./error.component.css']
+  styleUrls: ['./error.component.scss']
 })
 export class ErrorComponent implements OnInit {
   private history: string[] = []

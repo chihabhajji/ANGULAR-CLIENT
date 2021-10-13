@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {User} from "@app/shared/_models/User";
+import {User} from "@models/User";
 import {environment} from "@environments/environment";
-import {PaginationFilter} from "@app/shared/_models/_ui/PaginationFilter";
+import {PaginationFilter} from "@app/shared/_models/ui/PaginationFilter";
 
 @Injectable({
   providedIn: 'root'

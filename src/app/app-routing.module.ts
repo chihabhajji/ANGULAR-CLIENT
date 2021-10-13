@@ -4,8 +4,8 @@ import {ErrorComponent} from "@app/shared/components/error/error.component";
 // , canLoad: : [AuthGuard]
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: 'home',  loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)},
-  { path: 'dashboard',  loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)},
+  { path: 'home',loadChildren: () => import('./home/home.module').then(m => m.HomeModule)},
+  { path: 'dashboard',loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)},
   { path: '**', component: ErrorComponent , data: { breadcrumb: 'Error' } }
 ];
 

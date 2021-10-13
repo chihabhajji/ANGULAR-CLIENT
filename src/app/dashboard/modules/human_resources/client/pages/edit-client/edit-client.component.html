@@ -1,0 +1,176 @@
+<section class="content">
+  <div class="container-fluid">
+      <div class="block-header">
+          <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <ul class="breadcrumb breadcrumb-style ">
+                      <li class="breadcrumb-item">
+                          <h4 class="page-title">Add Clients</h4>
+                      </li>
+                      <li class="breadcrumb-item bcrumb-1">
+                          <a href="../../index.html">
+                              <i class="fas fa-home"></i> Home</a>
+                      </li>
+                      <li class="breadcrumb-item bcrumb-2">
+                          <a href="#" onClick="return false;">Clients</a>
+                      </li>
+                      <li class="breadcrumb-item active">Add Client</li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div class="card">
+                  <div class="header">
+                      <ul class="header-dropdown m-r--5">
+                          <li class="dropdown">
+                              <a href="#" onClick="return false;" class="dropdown-toggle"
+                                  data-bs-toggle="dropdown" role="button" aria-haspopup="true"
+                                  aria-expanded="false">
+                                  <i class="material-icons">more_vert</i>
+                              </a>
+                              <ul class="dropdown-menu float-end">
+                                  <li>
+                                      <a href="#" onClick="return false;">Action</a>
+                                  </li>
+                                  <li>
+                                      <a href="#" onClick="return false;">Another action</a>
+                                  </li>
+                                  <li>
+                                      <a href="#" onClick="return false;">Something else here</a>
+                                  </li>
+                              </ul>
+                          </li>
+                      </ul>
+                  </div>
+                  <div class="body">
+                      <div class="row clearfix">
+                          <div class="col-sm-6">
+                              <div class="form-group">
+                                  <div class="form-line">
+                                      <input type="text" class="form-control" placeholder="First Name"
+                                          value="Oliver" />
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-sm-6">
+                              <div class="form-group">
+                                  <div class="form-line">
+                                      <input type="text" class="form-control" placeholder="Last Name"
+                                          value="Russell" />
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row clearfix">
+                          <div class="col-sm-6">
+                              <div class="form-group">
+                                  <div class="form-line">
+                                      <input id="email" type="email" class="validate form-control"
+                                          placeholder="Email" value="test@email.com">
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-sm-6">
+                              <div class="form-group">
+                                  <div class="form-line">
+                                      <input type="text" class="form-control" placeholder="Client Id"
+                                          value="1005">
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row clearfix">
+                          <div class="col-sm-6">
+                              <div class="form-group">
+                                  <div class="form-line">
+                                      <input type="text" class="form-control" placeholder="Designation"
+                                          value="CEO" />
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-sm-6">
+                              <div class="form-group">
+                                  <select class="col-12 m-t-20 p-l-0">
+                                      <option value="" disabled selected>Gender</option>
+                                      <option value="1" selected>Male</option>
+                                      <option value="2">Female</option>
+                                  </select>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row clearfix">
+                          <div class="col-sm-6">
+                              <div class="form-group">
+                                  <div class="form-line">
+                                      <input type="text" class="form-control" placeholder="Telephone"
+                                          value="+1234567890" />
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-sm-6">
+                              <div class="form-group">
+                                  <div class="form-line">
+                                      <input type="text" class="form-control" placeholder="Country"
+                                          value="America">
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row clearfix">
+                          <div class="col-sm-6">
+                              <div class="form-group">
+                                  <div class="form-line">
+                                      <input type="text" class="form-control" placeholder="Website"
+                                          value="www.mywebsite.com" />
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-sm-6">
+                              <div class="form-group">
+                                  <input type="text" class="form-control datetimepicker" value="12-06-2014"
+                                      placeholder="Joining Date" name="date1" id="date1">
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row clearfix">
+                          <div class="col-sm-12">
+                              <div class="form-group">
+                                  <div class="form-line">
+                                      <textarea rows="4" class="form-control no-resize"
+                                          placeholder="Address">112, sec mpse, New Yourk, USA</textarea>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-sm-12">
+                              <label class="control-label col-md-3">Upload Client Profile Photo</label>
+                              <form action="https://www.radixtouch.com/" id="frmFileUpload" class="dropzone" method="post"
+                                  enctype="multipart/form-data">
+                                  <div class="dz-message">
+                                      <div class="drag-icon-cph">
+                                          <i class="material-icons">touch_app</i>
+                                      </div>
+                                      <h3>Drop files here or click to upload.</h3>
+                                      <em>(This is just a demo dropzone. Selected files are
+                                          <strong>not</strong>
+                                          actually uploaded.)</em>
+                                  </div>
+                                  <div class="fallback">
+                                      <input name="file" type="file" multiple />
+                                  </div>
+                              </form>
+                          </div>
+                      </div>
+                      <div class="col-lg-12 p-t-20 text-center">
+                          <button type="button" class="btn btn-primary waves-effect m-r-15">Submit</button>
+                          <button type="button" class="btn btn-danger waves-effect">Cancel</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
