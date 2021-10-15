@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {FlatNode, TreeNode} from "@models/ui/TreeNode";
-import { DASHBOARD_ROUTES} from "@app/dashboard/dashboard.route.declarations";
+import { DASHBOARD_ROUTES} from "@dashboard/dashboard.route.declarations";
 import {FlatTreeControl} from "@angular/cdk/tree";
 import {MatTreeFlatDataSource, MatTreeFlattener} from "@angular/material/tree";
 import {AuthService} from "@services/auth.service";

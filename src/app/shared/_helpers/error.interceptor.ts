@@ -17,7 +17,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(catchError(err => {
       if ([401, 403].indexOf(err.status) !== -1) {
         this.snackBar.open('Unauthorized request or session expired, please login again!')._dismissAfter(3000);
-        this.authenticationService.logout().then(value => location.reload());
+        this.authenticationService.logout().then(() => location.reload());
       }
       const error = err.message || err.statusText;
       this.snackBar.open(err.message)._dismissAfter(3000);

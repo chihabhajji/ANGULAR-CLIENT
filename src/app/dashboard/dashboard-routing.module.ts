@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
-import { DashboardNavigationComponent } from "@dashboard/_navigation/dashboard-navigation.component";
-import {UserProfileComponent} from "@app/dashboard/shared/current-user-profile/user_profile.component";
-import {ChatComponent} from "@dashboard/shared/chat/chat.component";
+import { DashboardNavigationComponent } from "@dashboard/../shared/components/navigation/dashboard-navigation.component";
+import {UserProfileComponent} from "@app/dashboard/components/current-user-profile/user_profile.component";
+
+import {ErrorComponent} from "@shared/components/error/error.component";
+import {LoginComponent} from "@dashboard/../shared/components/login/login.component";
 
 export const dashboardRoutes: Routes = [
-  { path: 'authentication', data: {breadcrumb: 'Authentication' },loadChildren: () => import('@shared/components/account/account.module').then(m => m.AccountModule)},
+  { path: 'login', pathMatch:'full', component: LoginComponent},
   {
     path: '',  component: DashboardNavigationComponent, data: { breadcrumb: 'Dashboard' } , children: [
       {
@@ -14,11 +16,6 @@ export const dashboardRoutes: Routes = [
         component: DashboardComponent,
         data: { breadcrumb: null }
       },
-			{
-				path: 'chat',
-				component: ChatComponent,
-				data: { breadcrumb: 'Chat'}
-			},
       {
         path: 'admin',
         data: { breadcrumb: 'Admin management' },
@@ -37,9 +34,11 @@ export const dashboardRoutes: Routes = [
       {
         path: 'services',
         loadChildren: () => import('@dashboard/modules/dashboard-modules.module').then(m => m.DashboardModulesModule)
-      }
+      },
+			{ path: '**', component: ErrorComponent , data: { breadcrumb: 'Error' } },
     ]
   },
+	{ path: '**', component: ErrorComponent , data: { breadcrumb: 'Error' } },
 ];
 
 @NgModule({

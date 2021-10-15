@@ -3,38 +3,37 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {map} from 'rxjs/operators';
 import {merge, Observable, of as observableOf} from 'rxjs';
-import {Role, User} from "@models/User";
+import {AuthProvider, Role, User} from "@models/User";
 
 // TODO: Replace this with your own data model type
 
 
 // TODO: replace this with real data from your application
 const EXAMPLE_DATA: User[] = [
-  {id: '', email: 'chihab.hajji@esprit.tn', username: 'chihab.hajji', password: '', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN]},
-	{id: '', email: 'chihab.hajji@esprit.tn', username: 'chihab.hajji', password: '', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN]},
-	{id: '', email: 'chihab.hajji@esprit.tn', username: 'chihab.hajji', password: '', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN]},
-	{id: '', email: 'chihab.hajji@esprit.tn', username: 'chihab.hajji', password: '', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN]},
-	{id: '', email: 'chihab.hajji@esprit.tn', username: 'chihab.hajji', password: '', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN]},
-	{id: '', email: 'chihab.hajji@esprit.tn', username: 'chihab.hajji', password: '', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN]},
-	{id: '', email: 'chihab.hajji@esprit.tn', username: 'chihab.hajji', password: '', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN]},
-	{id: '', email: 'chihab.hajji@esprit.tn', username: 'chihab.hajji', password: '', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN]},
-	{id: '', email: 'chihab.hajji@esprit.tn', username: 'chihab.hajji', password: '', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN]},
-	{id: '', email: 'chihab.hajji@esprit.tn', username: 'chihab.hajji', password: '', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN]},
-	{id: '', email: 'chihab.hajji@esprit.tn', username: 'chihab.hajji', password: '', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN]},
-	{id: '', email: 'chihab.hajji@esprit.tn', username: 'chihab.hajji', password: '', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN]},
-	{id: '', email: 'chihab.hajji@esprit.tn', username: 'chihab.hajji', password: '', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN]},
-	{id: '', email: 'chihab.hajji@esprit.tn', username: 'chihab.hajji', password: '', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN]},
-	{id: '', email: 'chihab.hajji@esprit.tn', username: 'chihab.hajji', password: '', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN]},
-	{id: '', email: 'chihab.hajji@esprit.tn', username: 'chihab.hajji', password: '', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN]},
-	{id: '', email: 'chihab.hajji@esprit.tn', username: 'chihab.hajji', password: '', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN]},
-	{id: '', email: 'chihab.hajji@esprit.tn', username: 'chihab.hajji', password: '', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN]},
-	{id: '', email: 'chihab.hajji@esprit.tn', username: 'chihab.hajji', password: '', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN]},
-	{id: '', email: 'chihab.hajji@esprit.tn', username: 'chihab.hajji', password: '', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN]},
-	{id: '', email: 'chihab.hajji@esprit.tn', username: 'chihab.hajji', password: '', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN]},
-	{id: '', email: 'chihab.hajji@esprit.tn', username: 'chihab.hajji', password: '', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN]},
-	{id: '', email: 'chihab.hajji@esprit.tn', username: 'chihab.hajji', password: '', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN]},
-	{id: '', email: 'chihab.hajji@esprit.tn', username: 'chihab.hajji', password: '', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN]},
-	{id: '', email: 'chihab.hajji@esprit.tn', username: 'chihab.hajji', password: '', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN]},
+  {id: '123123123', email: 'chihab.hajji@esprit.tn', name: 'chihab.hajji', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN], emailVerified: true,joinDate: new Date(), provider: AuthProvider.local, providerId: "123123123"},
+	{id: '123123123', email: 'chihab.hajji@esprit.tn', name: 'chihab.hajji', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN], emailVerified: true,joinDate: new Date(), provider: AuthProvider.local, providerId: "123123123"},
+	{id: '123123123', email: 'chihab.hajji@esprit.tn', name: 'chihab.hajji', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN], emailVerified: true,joinDate: new Date(), provider: AuthProvider.local, providerId: "123123123"},
+	{id: '123123123', email: 'chihab.hajji@esprit.tn', name: 'chihab.hajji', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN], emailVerified: true,joinDate: new Date(), provider: AuthProvider.local, providerId: "123123123"},
+	{id: '123123123', email: 'chihab.hajji@esprit.tn', name: 'chihab.hajji', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN], emailVerified: true,joinDate: new Date(), provider: AuthProvider.local, providerId: "123123123"},
+	{id: '123123123', email: 'chihab.hajji@esprit.tn', name: 'chihab.hajji', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN], emailVerified: true,joinDate: new Date(), provider: AuthProvider.local, providerId: "123123123"},
+	{id: '123123123', email: 'chihab.hajji@esprit.tn', name: 'chihab.hajji', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN], emailVerified: true,joinDate: new Date(), provider: AuthProvider.local, providerId: "123123123"},
+	{id: '123123123', email: 'chihab.hajji@esprit.tn', name: 'chihab.hajji', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN], emailVerified: true,joinDate: new Date(), provider: AuthProvider.local, providerId: "123123123"},
+	{id: '123123123', email: 'chihab.hajji@esprit.tn', name: 'chihab.hajji', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN], emailVerified: true,joinDate: new Date(), provider: AuthProvider.local, providerId: "123123123"},
+	{id: '123123123', email: 'chihab.hajji@esprit.tn', name: 'chihab.hajji', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN], emailVerified: true,joinDate: new Date(), provider: AuthProvider.local, providerId: "123123123"},
+	{id: '123123123', email: 'chihab.hajji@esprit.tn', name: 'chihab.hajji', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN], emailVerified: true,joinDate: new Date(), provider: AuthProvider.local, providerId: "123123123"},
+	{id: '123123123', email: 'chihab.hajji@esprit.tn', name: 'chihab.hajji', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN], emailVerified: true,joinDate: new Date(), provider: AuthProvider.local, providerId: "123123123"},
+	{id: '123123123', email: 'chihab.hajji@esprit.tn', name: 'chihab.hajji', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN], emailVerified: true,joinDate: new Date(), provider: AuthProvider.local, providerId: "123123123"},
+	{id: '123123123', email: 'chihab.hajji@esprit.tn', name: 'chihab.hajji', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN], emailVerified: true,joinDate: new Date(), provider: AuthProvider.local, providerId: "123123123"},
+	{id: '123123123', email: 'chihab.hajji@esprit.tn', name: 'chihab.hajji', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN], emailVerified: true,joinDate: new Date(), provider: AuthProvider.local, providerId: "123123123"},
+	{id: '123123123', email: 'chihab.hajji@esprit.tn', name: 'chihab.hajji', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN], emailVerified: true,joinDate: new Date(), provider: AuthProvider.local, providerId: "123123123"},
+	{id: '123123123', email: 'chihab.hajji@esprit.tn', name: 'chihab.hajji', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN], emailVerified: true,joinDate: new Date(), provider: AuthProvider.local, providerId: "123123123"},
+	{id: '123123123', email: 'chihab.hajji@esprit.tn', name: 'chihab.hajji', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN], emailVerified: true,joinDate: new Date(), provider: AuthProvider.local, providerId: "123123123"},
+	{id: '123123123', email: 'chihab.hajji@esprit.tn', name: 'chihab.hajji', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN], emailVerified: true,joinDate: new Date(), provider: AuthProvider.local, providerId: "123123123"},
+	{id: '123123123', email: 'chihab.hajji@esprit.tn', name: 'chihab.hajji', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN], emailVerified: true,joinDate: new Date(), provider: AuthProvider.local, providerId: "123123123"},
+	{id: '123123123', email: 'chihab.hajji@esprit.tn', name: 'chihab.hajji', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN], emailVerified: true,joinDate: new Date(), provider: AuthProvider.local, providerId: "123123123"},
+	{id: '123123123', email: 'chihab.hajji@esprit.tn', name: 'chihab.hajji', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN], emailVerified: true,joinDate: new Date(), provider: AuthProvider.local, providerId: "123123123"},
+	{id: '123123123', email: 'chihab.hajji@esprit.tn', name: 'chihab.hajji', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN], emailVerified: true,joinDate: new Date(), provider: AuthProvider.local, providerId: "123123123"},
+	{id: '123123123', email: 'chihab.hajji@esprit.tn', name: 'chihab.hajji', firstName:'chihab', lastName: 'hajji', roles: [Role.SUPER_ADMIN], emailVerified: true,joinDate: new Date(), provider: AuthProvider.local, providerId: "123123123"},
 
 ];
 
@@ -101,7 +100,7 @@ export class UsersListDataSource extends DataSource<User> {
       const isAsc = this.sort?.direction === 'asc';
       switch (this.sort?.active) {
         case 'email': return compare(a.email, b.email, isAsc);
-        case 'username': return compare(a.username, b.username, isAsc);
+        case 'name': return compare(a.name, b.name, isAsc);
         default: return 0;
       }
     });

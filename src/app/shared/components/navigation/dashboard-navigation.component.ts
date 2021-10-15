@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, HostBinding, OnDestroy, OnInit} from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import {BehaviorSubject, Observable, Subject, Subscriber} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import {AuthService} from "@services/auth.service";
 import {NotificationService} from "@services/notification.service";
@@ -18,15 +18,19 @@ export class DashboardNavigationComponent implements OnInit, AfterViewInit, OnDe
   notificationFetchPage: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   darkClassName = 'darkMode';
   lightClassName = 'light';
-	public activeInitialTitle: string = this.titleService.getTitle();
+	public static activeTitle: BehaviorSubject<string> = new BehaviorSubject<string>("");
   @HostBinding('class') className = localStorage.getItem('theme') ?? this.lightClassName ;
   toggleControl = new FormControl(this.className === this.darkClassName);
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(map(result => result.matches), shareReplay());
 	searchFieldValue: string = "";
 	fetching: boolean = false;
 	isChatOpen: boolean = false;
+	currentThemeColor: any;
+	// this.authService.currentUserValue.firstName+' '+ this.authService.currentUserValue.lastName
+	userImageUrl: string = this.authService.currentUserValue?.imageUrl?? 'https://avatars.dicebear.com/api/bottts/'+ 'test' +'.svg';
   constructor(private breakpointObserver: BreakpointObserver, public authService: AuthService, public notificationService: NotificationService,private overlay: OverlayContainer, private materialOverlayComponents: MaterialOverlayComponentsService,public gatewayService: GatewayService, private titleService: Title) {
-
+		DashboardNavigationComponent.activeTitle.next(this.titleService.getTitle());
+		this.currentThemeColor = this.className === 'darkMode' ? {'color':'white'}: {'color':'black'};
   }
 
   async logout(): Promise<void> {
@@ -37,7 +41,7 @@ export class DashboardNavigationComponent implements OnInit, AfterViewInit, OnDe
 		this.notificationFetchPage.unsubscribe();
 	}
 	async ngAfterViewInit(): Promise<void> {
-		await this.gatewayService.ping();
+		//await this.gatewayService.ping();
 	}
   async ngOnInit() {
     await this.notificationService.countUnreadNotifications();
@@ -45,7 +49,7 @@ export class DashboardNavigationComponent implements OnInit, AfterViewInit, OnDe
 		this.notificationService.notifications$.subscribe((value) => {
 			if(!this.fetching) {
 				this.notificationService.notificationCount.next(this.notificationService.notificationCount.value+1);
-				this.titleService.setTitle(`(${this.notificationService.notificationCount.value}) ${this.activeInitialTitle}`);
+				this.titleService.setTitle(`(${this.notificationService.notificationCount.value}) ${DashboardNavigationComponent.activeTitle.value}`);
 				this.materialOverlayComponents._snackbar.open('New notification recieved',undefined,{
 					politeness: 'assertive',
 					horizontalPosition: 'left',
@@ -64,6 +68,7 @@ export class DashboardNavigationComponent implements OnInit, AfterViewInit, OnDe
       } else {
         this.overlay.getContainerElement().classList.remove(this.darkClassName);
       }
+			this.currentThemeColor = this.className === 'darkMode' ? {'color':'white'}: {'color':'black'};
       localStorage.setItem('theme', this.className);
     });
   }

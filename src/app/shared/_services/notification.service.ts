@@ -7,6 +7,8 @@ import {Notification} from "@models/Notification";
 import {environment} from "@environments/environment";
 import RSocketWebSocketClient from "rsocket-websocket-client";
 import {AuthService} from "@services/auth.service";
+import {stat} from "fs";
+import {ConnectionStatus} from "rsocket-types/ReactiveSocketTypes";
 
 
 @Injectable({
@@ -16,7 +18,6 @@ export class NotificationService implements OnDestroy {
 	private holderUrl = `http://localhost:8081`;
 	notificationCount: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 	notifications$: BehaviorSubject<Notification[]> = new BehaviorSubject<Notification[]>([]);
-	connectionStatus$ = new BehaviorSubject<string>('CONNECTING');
 	config: RSocketRxjsModuleConfig = {
 		// TODO : REPLACE BY CLIENT ID FROM THE SERVICE
 		connectMappingData: 1,
@@ -35,17 +36,27 @@ export class NotificationService implements OnDestroy {
 		})
 	};
 	webRSocketClient: RSocketWebSocketClient = new RSocketWebSocketClient({url: `${environment.notificationsRSocketUrl}`});
+	connectionStatus: ConnectionStatus = {kind:"CONNECTING"};
 	constructor(private rSocketService: RSocketService, private httpClient: HttpClient, private authService: AuthService) {
-		this.rSocketService.connect(this.config);
 		// FOR CONNECTION STATUS SADLY I HAVE TO CREATE ANOTHER CLIENT, SAD 😢
 		this.webRSocketClient.connect();
-		this.webRSocketClient.connectionStatus().subscribe(status => this.connectionStatus$.next(status.kind));
+		this.webRSocketClient.connectionStatus().subscribe(status => {
+			this.connectionStatus = status;
+			const reconnectInterval = setInterval(() =>{
+				if(status.kind === 'CONNECTED'){
+					this.rSocketService.connect(this.config);
+					clearTimeout(reconnectInterval);
+					console.log('cleared time out');
+				}else if(status.kind === 'CLOSED' || status.kind === 'ERROR'){
+					console.log('retrying')
+				}
+			}, 5000);
+		});
 	}
 
 	ngOnDestroy(): void {
 		this.notificationCount.unsubscribe();
 		this.notifications$.unsubscribe();
-		this.connectionStatus$.unsubscribe();
 	}
 
 	async sendNotification(notification: Notification): Promise<Observable<Notification>> {

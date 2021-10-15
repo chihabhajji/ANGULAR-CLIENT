@@ -1,0 +1,105 @@
+<div class="wrapper">
+	<div class="main-container mt-3">
+		<div class="title" [ngSwitch]="toggleForms">
+			<div *ngSwitchCase="true" [@enterTrigger]="'fadeIn'">Register</div>
+			<div *ngSwitchCase="false" [@enterTrigger]="'fadeIn'">Login</div>
+		</div>
+		<div class="login-form" [@enterTrigger]="'fadeIn'" [ngSwitch]="toggleForms">
+			<ng-container>
+				<form class="form-wrapper" [formGroup]="loginFormGroup" *ngSwitchCase="true" [@enterTrigger]="'fadeIn'" >
+					<div>
+						<label>
+							E-mail<span></span>
+						</label>
+						<input name="login" type="text" />
+					</div>
+					<div class="pw-wrapper">
+						<label>
+							Password<span></span>
+						</label>
+						<input name="password" type="password" />
+					</div>
+					<div class="pw-wrapper"></div>
+					<div class="forgot-pw-wrapper">
+						<a class="forgot-pw-link">Forgot password?</a>
+					</div>
+					<!---->
+					<div class="login-button-wrapper">
+						<button type="submit" class="submit-button">
+							Log in
+						</button>
+					</div>
+				</form>
+			</ng-container>
+			<ng-container>
+				<form class="form-wrapper" [formGroup]="registerFormGroup" *ngSwitchCase="false" [@enterTrigger]="'fadeIn'">
+					<div class="pw-wrapper">
+						<label>
+							Username<span></span>
+						</label>
+						<input name="password" type="password" [(ngModel)]="userName" />
+					</div>
+					<div class="pw-wrapper">
+						<label>
+							E-mail<span></span>
+						</label>
+						<input name="login" type="text" [(ngModel)]="email"/>
+					</div>
+					<div class="pw-wrapper">
+						<label>
+							Password<span></span>
+						</label>
+						<input name="password" type="password" [(ngModel)]="password"/>
+					</div>
+					<!---->
+					<div class="login-button-wrapper">
+						<button type="submit" class="submit-button" [disabled]="!registerFormGroup.touched">
+							Register
+						</button>
+					</div>
+				</form>
+			</ng-container>
+			<div class="right-container">
+				<div class="cta-wrapper" [ngSwitch]="toggleForms">
+					<div *ngSwitchCase="true">
+						Don't have a an account yet?<br />
+						<a class="cta" (click)="toggleForms=false">
+							Register now!
+						</a>
+					</div>
+					<div *ngSwitchCase="false">
+						Have an account ?<br />
+						<a class="cta" (click)="toggleForms=true">
+							Login
+						</a>
+					</div>
+				</div>
+				<div>
+					<h2>Demo login info</h2>
+					email: demo-user@esprit.fgsc<br>
+					password: 123456
+				</div>
+				<div class="socials-container">
+					Or log in with social account:
+					<ul>
+						<li>
+							<a >
+								<img src="assets/homemade/images/github.svg" alt='' />
+							</a>
+						</li>
+						<li>
+							<a>
+								<img src="assets/homemade/images/google.svg" alt='' />
+							</a>
+						</li>
+						<li>
+							<a>
+								<img src="assets/homemade/images/facebook.svg" alt='' />
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,30 +1,17 @@
 import {Injectable} from '@angular/core';
-import {HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {AuthService} from "@app/shared/_services/auth.service";
 import {environment} from "@environments/environment";
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-
-  constructor(private authenticationService: AuthService) {
-  }
-
+  constructor() {}
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const currentUser = this.authenticationService.currentUserValue;
-    const isLoggedIn = currentUser && currentUser.token;
-    request = request.clone({
-      setHeaders: {
-        'Access-Control-Allow-Origin': [`${environment.gateway}`],
-        'content-type': 'application/json',
-        "Access-Control-Allow-Methods":["GET, POST", "PUT", "DELETE"],
-        Accept: '*/*',
-      }
-    })
-    if (isLoggedIn && request.url.startsWith(environment.gateway)) {
+		const token = localStorage.getItem('token');
+    if (token && request.url.startsWith(environment.gateway)) {
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${currentUser.token}`,
+          Authorization: `${localStorage.getItem('bearer')} ${localStorage.getItem('token')}`,
         }
       });
     }

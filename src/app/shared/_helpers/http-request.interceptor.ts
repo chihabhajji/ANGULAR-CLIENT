@@ -8,7 +8,6 @@ import {
 import { Observable } from 'rxjs';
 import {NgxSpinnerService} from "ngx-spinner";
 import {finalize} from "rxjs/operators";
-import {ErrorInterceptor} from "@shared/_helpers/error.interceptor";
 
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {

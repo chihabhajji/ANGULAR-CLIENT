@@ -1,39 +1,35 @@
-<div class="h-100">
+<div class="h-100" >
 	<ngx-loading-bar ref="router" color="lightblue" [includeBar]="true" [includeSpinner]="false"></ngx-loading-bar>
-	<ngx-loading-bar ref="http" color="orange" [includeBar]="true" [includeSpinner]="false" ></ngx-loading-bar>
-	<mat-progress-bar color="warn" *ngIf="!gatewayService.connectionState.value" mode="indeterminate" matTooltip="Trying to reconnect to the API Gateway"></mat-progress-bar>
+	<ngx-loading-bar ref="http" color="orange" [includeBar]="true" [includeSpinner]="false"></ngx-loading-bar>
+	<mat-progress-bar color="warn" *ngIf="!gatewayService.connectionState.value" mode="indeterminate"
+										matTooltip="Trying to reconnect to the API Gateway"></mat-progress-bar>
 	<mat-toolbar color="primary">
-		<button
-			type="button"
-			aria-label="Toggle sidenav"
-			mat-icon-button
-			(click)="leftDrawer.toggle()"
-		>
-			<mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-		</button>
-		<mat-form-field color="primary">
+		<mat-icon aria-label="Toggle sidenav" (click)="leftDrawer.toggle()" matTooltip="Toggle right sidebar" [ngStyle]="currentThemeColor">
+			menu
+		</mat-icon>
+		<mat-form-field [ngStyle]="currentThemeColor">
 			<mat-label *ngIf="!searchFieldValue">Search</mat-label>
 			<input matInput type="text" [(ngModel)]="searchFieldValue">
-			<button *ngIf="searchFieldValue" matSuffix mat-icon-button aria-label="Clear" (click)="searchFieldValue=''">
+			<button *ngIf="searchFieldValue" matSuffix mat-icon-button aria-label="Clear" mat-flat-button (click)="searchFieldValue=''">
 				<mat-icon>close</mat-icon>
 			</button>
 		</mat-form-field>
 		<span class="spacer"></span>
 		<!--	START NOTIFICATIONS	-->
-		<button mat-icon-button class="favorite-icon mr-2" aria-label="Notifications" matTooltip="Notifications"
+		<button mat-icon-button class="mr-2" aria-label="Notifications" matTooltip="Notifications" [ngStyle]="currentThemeColor"
 						[matMenuTriggerFor]="notificationsMenu">
 			<mat-icon [matBadge]="notificationService.notificationCount | async" matBadgeColor="primary"
-								matBadgePosition="below after">
+								matBadgePosition="below after" >
 				notifications
 			</mat-icon>
 			<span class="notify"></span>
-			<ng-container *ngIf="(notificationService.connectionStatus$ | async) === 'CONNECTING'">
+			<ng-container *ngIf="notificationService.connectionStatus.kind === 'CONNECTING'">
 				<span class="connecting"></span>
 			</ng-container>
-			<ng-container *ngIf="(notificationService.connectionStatus$ | async) === 'CONNECTED'">
+			<ng-container *ngIf="notificationService.connectionStatus.kind === 'CONNECTED'">
 				<span class="heartbeat"></span>
 			</ng-container>
-			<ng-container *ngIf="(notificationService.connectionStatus$ | async) === 'ERROR'">
+			<ng-container *ngIf="notificationService.connectionStatus.kind === 'ERROR'">
 				<span class="error"></span>
 			</ng-container>
 		</button>
@@ -43,7 +39,7 @@
 					<mat-card-header>Notifications</mat-card-header>
 					<mat-card-subtitle>26 unread notifications</mat-card-subtitle>
 					<mat-card-content class="d-flex justify-content-center">
-						<mat-list *ngIf="notificationService.connectionStatus$.value === 'CONNECTED'">
+						<mat-list *ngIf="notificationService.connectionStatus.kind === 'CONNECTED'">
 							<mat-list-item *ngFor="let m of notificationService.notifications$ | async; index as i"
 														 (click)="notificationService.setSeen(m)">
 								<mat-icon matListIcon>info</mat-icon>
@@ -54,7 +50,7 @@
 								</p>
 							</mat-list-item>
 						</mat-list>
-						<mat-card-content *ngIf="notificationService.connectionStatus$.value === 'ERROR'">
+						<mat-card-content *ngIf="notificationService.connectionStatus.kind === 'ERROR' || notificationService.connectionStatus.kind === 'CLOSED' || notificationService.connectionStatus.kind === 'NOT_CONNECTED'">
 							Could not reach notification end point, make sure you are online 🤷‍♂️
 						</mat-card-content>
 					</mat-card-content>
@@ -70,14 +66,14 @@
 		</mat-menu>
 		<!-- END NOTIFICATIONS-->
 		<!-- START PROFILE MENU		-->
-		<img src="https://avatars.dicebear.com/api/bottts/test user.svg" matCardAvatar
+		<img src="{{userImageUrl}}" matCardAvatar
 				 alt="user avatar fetched from dicebear avatar"
 				 [matMenuTriggerFor]="profileAndSettingsMenu">
 		<mat-menu #profileAndSettingsMenu="matMenu">
 			<ng-template matMenuContent>
 				<mat-card>
 					<mat-card-header class="d-flex justify-content-center">
-						<img src="https://avatars.dicebear.com/api/bottts/test user.svg"
+						<img src="{{userImageUrl}}"
 								 class="rounded-circle z-depth-2 mb-1 avatar-picture" alt="user avatar fetched from dicebear avatar"
 								 style="cursor: pointer; width: 50%;"
 								 routerLink="me"
@@ -85,9 +81,12 @@
 					</mat-card-header>
 					<mat-card-content class="d-flex justify-content-center">
 						<div style="cursor: pointer" routerLink="me">
-							{{ authService.currentUserValue?.username }}
+							{{ authService.currentUserValue.name }}
 						</div>
-						<div>Manager</div>
+						<ng-container *ngFor="let role of authService.currentUserValue.roles">
+							{{ authService.displayRole(role) }}
+						</ng-container>
+						<div>{{ authService.currentUserValue.roles}}</div>
 					</mat-card-content>
 				</mat-card>
 				<button mat-menu-item>
@@ -110,7 +109,7 @@
 		</mat-menu>
 		<!-- END PROFILE MENU		-->
 		<!-- START PROFILE MENU		-->
-		<button mat-icon-button (click)="right.toggle()">
+		<button mat-icon-button (click)="right.toggle()" [ngStyle]="currentThemeColor">
 			<mat-icon>{{ right.opened ? 'arrow_forward_ios_new' : 'arrow_back_ios_new' }}</mat-icon>
 		</button>
 	</mat-toolbar>
@@ -122,7 +121,7 @@
 			<mat-card>
 				<mat-card-header>
 					<div mat-card-avatar>
-						<img src="assets/images/user.jpg" alt="User image" class="rounded">
+						<img src="{{userImageUrl}}" alt="User image" class="rounded">
 					</div>
 					<mat-card-title>Shiba Inu</mat-card-title>
 					<mat-card-subtitle>Dog Breed</mat-card-subtitle>
@@ -136,7 +135,7 @@
 				<section class="content-header">
 					<div class="container-fluid">
 						<app-breadcrumb></app-breadcrumb>
-						<router-outlet></router-outlet>
+						<router-outlet id="router"></router-outlet>
 						<app-chat (closeChatEvent)="toggleChat()" *ngIf="isChatOpen"></app-chat>
 						<button mat-icon-button id="sticky-bottom" *ngIf="!isChatOpen" color="primary" (click)="toggleChat()">
 							<mat-icon>
@@ -173,3 +172,36 @@
 		</mat-sidenav>
 	</mat-sidenav-container>
 </div>
+
+
+<!-- In the future  -->
+<!--<mat-drawer-container class="example-container mat-typography" autosize>-->
+<!--	<mat-drawer #drawer mode="side" disableClose="true" opened="true">-->
+<!--		<button mat-mini-fab color="warn" style="margin: 10px;">-->
+<!--			<mat-icon aria-label="Menu">menu</mat-icon>-->
+<!--		</button>-->
+<!--		<mat-nav-list>-->
+<!--			<mat-list-item>-->
+<!--				<mat-icon mat-list-icon>person</mat-icon>-->
+<!--				<h4 mat-line >Management A</h4>-->
+<!--			</mat-list-item>-->
+<!--			<mat-list-item>-->
+<!--				<mat-icon mat-list-icon>assignment</mat-icon>-->
+<!--				<h4 mat-line >Management B</h4>-->
+<!--			</mat-list-item>-->
+<!--			<mat-list-item>-->
+<!--				<mat-icon mat-list-icon>domain</mat-icon>-->
+<!--				<h4 mat-line >Management C</h4>-->
+<!--			</mat-list-item>-->
+<!--			<mat-list-item>-->
+<!--				<mat-icon mat-list-icon>folder_shared</mat-icon>-->
+<!--				<h4 mat-line >Management X</h4>-->
+<!--			</mat-list-item>-->
+<!--		</mat-nav-list>-->
+<!--	</mat-drawer>-->
+
+<!--	<div class="example-sidenav-content">-->
+<!--		You cards and screen Contents goes here..-->
+<!--		Will be pushed towards right on expanding side navbar.-->
+<!--	</div>-->
+<!--</mat-drawer-container>-->

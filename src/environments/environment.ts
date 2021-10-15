@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  gateway: 'http://localhost:8080/',
-  apiGateway: 'https://fgsc-gateway.herokuapp.com/api/',
+  gateway: 'http://localhost:5050/',
   notificationsRSocketUrl: 'ws://localhost:7000/rs'
 };
 

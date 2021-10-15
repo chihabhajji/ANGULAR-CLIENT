@@ -26,10 +26,10 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {NgxSpinnerModule} from "ngx-spinner";
 import {TranslateModule} from "@ngx-translate/core";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {ReactiveFormsModule} from "@angular/forms";
 @NgModule({
   declarations: [
     AppComponent,
-    ErrorComponent
   ],
 	imports: [
 		HttpClientModule,
@@ -45,6 +45,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 		MatProgressSpinnerModule,
 		MatProgressBarModule,
 		MatTooltipModule,
+		ReactiveFormsModule
 	],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

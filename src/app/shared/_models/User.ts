@@ -1,14 +1,40 @@
 export interface User {
   id: string;
-  username: string;
-  email: string;
-  firstName: string;
-  lastName: string;
+	email: string;
+	name: string;
+  firstName?: string;
+  lastName?: string;
+	imageUrl?:string;
   roles: Array<Role>;
-  password?: string;
-  token?: string;
+	joinDate: Date;
+	emailVerified: boolean;
+	providerId: string;
+	provider: AuthProvider;
 }
-
+export class SignUpRequest {
+	name: string;
+	email: string;
+	password: string;
+	constructor(name: string,email: string, password: string) {
+		this.name = name;
+		this.email = email;
+		this.password = password;
+	}
+}
+export class LoginRequest{
+	email: string;
+	password: string;
+	constructor(email: string, password: string) {
+		this.email = email;
+		this.password = password
+	}
+}
+export enum AuthProvider{
+	local = "local",
+	facebook = "facebook",
+	google = "google",
+	github = "github"
+}
 export enum Role {
   SUPER_ADMIN = 'SUPER_ADMIN',
 }

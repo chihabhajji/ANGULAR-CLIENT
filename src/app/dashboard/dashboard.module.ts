@@ -15,8 +15,8 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatTreeModule} from "@angular/material/tree";
 import {MatBadgeModule} from "@angular/material/badge";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
-import {DashboardNavigationComponent} from "@dashboard/_navigation/dashboard-navigation.component";
-import {FlatRoutesTree} from "@dashboard/_navigation/flat-routes-tree/flat-routes-tree";
+import {DashboardNavigationComponent} from "@dashboard/../shared/components/navigation/dashboard-navigation.component";
+import {FlatRoutesTree} from "@dashboard/../shared/components/navigation/flat-routes-tree/flat-routes-tree";
 import {LoadingBarRouterModule} from "@ngx-loading-bar/router";
 import {RSocketRxjsModule, RSocketService} from "ng-rsocket-rxjs";
 import {NotificationService} from "@services/notification.service";
@@ -25,15 +25,17 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {BreadcrumbModule} from "@shared/components/breadcrumb/breadcrumb.module";
-import {StatPreviewCardsComponent} from "@app/dashboard/dashboard_components/stat-preview/stat-preview-cards.component";
-import {ChartComponent} from "@app/dashboard/dashboard_components/chart/chart.component";
-import {UserProfileComponent} from "@dashboard/shared/current-user-profile/user_profile.component";
+import {StatPreviewCardsComponent} from "@app/dashboard/components/stat-preview/stat-preview-cards.component";
+import {ChartComponent} from "@app/dashboard/components/chart/chart.component";
+import {UserProfileComponent} from "@dashboard/components/current-user-profile/user_profile.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatTooltipModule} from "@angular/material/tooltip";
-import { ChatComponent } from './shared/chat/chat.component';
+import { ChatComponent } from './components/chat/chat.component';
 import {MaterialOverlayComponentsService} from "@services/material-overlay-components.service";
 import {MatSelectModule} from "@angular/material/select";
+import {ErrorComponent} from "@shared/components/error/error.component";
+import {LoginComponent} from "@shared/components/login/login.component";
 
 
 
@@ -45,7 +47,9 @@ import {MatSelectModule} from "@angular/material/select";
     StatPreviewCardsComponent,
     ChartComponent,
     UserProfileComponent,
-    ChatComponent
+    ChatComponent,
+		ErrorComponent,
+		LoginComponent
   ],
 	imports: [
 		CommonModule,
@@ -86,7 +90,7 @@ import {MatSelectModule} from "@angular/material/select";
     NotificationService, RSocketService, MaterialOverlayComponentsService
   ],
   bootstrap: [
-    DashboardNavigationComponent
+    DashboardNavigationComponent, LoginComponent
   ]
 })
 export class DashboardModule {}

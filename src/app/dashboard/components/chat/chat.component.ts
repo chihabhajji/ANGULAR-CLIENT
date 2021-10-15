@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
 import {AbstractControl, FormControl} from "@angular/forms";
 
 
@@ -10,6 +10,7 @@ import {AbstractControl, FormControl} from "@angular/forms";
 export class ChatComponent implements OnInit {
 	messageFormControl: FormControl = new FormControl({}, );
 	@Output() closeChatEvent: EventEmitter<undefined> = new EventEmitter<undefined>();
+	@HostListener('document:click') clickout() {console.log("clicked router")}
   constructor() { }
 
   ngOnInit(): void {

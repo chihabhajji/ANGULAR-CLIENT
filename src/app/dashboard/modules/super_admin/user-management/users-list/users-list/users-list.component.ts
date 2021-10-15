@@ -4,11 +4,17 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { UsersListDataSource } from './users-list-datasource';
 import {User} from "@models/User";
+import {UsersService} from "@services/users.service";
+import {FadeOutAnimation} from "@shared/_animations/animations";
 
 @Component({
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
-  styleUrls: ['./users-list.component.scss']
+  styleUrls: ['./users-list.component.scss'],
+	providers: [UsersListDataSource,UsersService],
+	animations: [
+		FadeOutAnimation
+	]
 })
 export class UsersListComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
